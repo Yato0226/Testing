@@ -1,4 +1,4 @@
-const portalContainer = document.querySelector('.portal-container');
+const portalContainer = document.querySelector('.portal-container ');
 const portal = document.querySelector('.portal');
 
 // Show the portal when the page loads
@@ -16,4 +16,10 @@ portal.addEventListener('click', () => {
             portalContainer.style.display = 'none';
         }, 500);
     }, 500);
+});
+
+// Add event listener to the body to show the portal when clicked
+document.body.addEventListener('click', () => {
+    portalContainer.style.display = 'flex';
+    portal.classList.add('show');
 });
