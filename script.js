@@ -1,24 +1,34 @@
-.portal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 200px;
-    height: 200px;
-    background-color: #fff;
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    cursor: pointer;
-    transition: transform 0.5s ease-in-out;
-}
+const portalContainer = document.querySelector('.portal-container');
+const portal = document.querySelector('.portal');
+const body = document.querySelector('body');
 
-.portal:hover {
-    background-color: #333;
-    color: #fff;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-}
+// Show the portal when the page loads
+portalContainer.style.display = 'flex';
 
-.portal:active {
-    transform: scale(1.1);
-    transition: transform 0.1s ease-in-out;
-}
+// Add event listener to the portal
+portal.addEventListener('click', () => {
+    // Add animation here
+    portal.style.transform = 'scale(1.2)';
+    portal.style.transition = 'transform 0.5s ease-in-out';
+
+    // After 0.5 seconds, scale back to normal and hide the portal
+    setTimeout(() => {
+        portal.style.transform = 'scale(1)';
+        portal.style.transition = 'transform 0.5s ease-in-out';
+        setTimeout(() => {
+            portalContainer.style.display = 'none';
+            // Show the main content
+            body.style.overflow = 'auto';
+        }, 500);
+    }, 500);
+});
+
+// Add event listener to the portal container
+portalContainer.addEventListener('click', (e) => {
+    // If the click is not on the portal, hide the portal
+    if (e.target !== portal) {
+        portalContainer.style.display = 'none';
+        // Show the main content
+        body.style.overflow = 'auto';
+    }
+});
