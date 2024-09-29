@@ -19,7 +19,9 @@ portal.addEventListener('click', () => {
 });
 
 // Add event listener to the body to show the portal when clicked
-document.body.addEventListener('click', () => {
-    portalContainer.style.display = 'flex';
-    portal.classList.add('show');
+document.body.addEventListener('click', (e) => {
+    if (e.target === document.body) {
+        portalContainer.style.display = 'flex';
+        portal.classList.add('show');
+    }
 });
